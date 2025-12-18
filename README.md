@@ -126,7 +126,7 @@ Crashing at line -
 # Build
 
     cd; \
-    git clone --depth 1 https://github.com/George-Seven/Termux-XEMU; \
-    cd Termux-XEMU; \
+    git clone --depth 1 https://github.com/Yew12347/Termux-XEMU-gpu-enabled.git; \
+    cd Termux-XEMU-gpu-enabled; \
     git pull; \
     ./build-xemu.sh
