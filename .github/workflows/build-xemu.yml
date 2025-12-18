@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Build Xemu
         run: |
-          git clone --depth 1 https://github.com/George-Seven/termux-packages
+          git clone --depth 1 https://github.com/Yew12347/termux-packages.git
           cd termux-packages
           ./scripts/run-docker.sh bash -c "apt-get update --allow-releaseinfo-change && apt-get install -y python3"
           ./scripts/run-docker.sh ./build-package.sh -f -I -a "${{ matrix.ARCH }}" xemu
