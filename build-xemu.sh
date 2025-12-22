@@ -18,9 +18,9 @@ TMP_DIR="$(mktemp -d)"
 
 cd "$TMP_DIR"
 
-git clone --depth 1 https://github.com/Yew12347/termux-packages.git
+git clone --depth 1 https://github.com/Yew12347/new-termux-packages.git
 
-cd termux-packages
+cd new-termux-packages
 
 ./scripts/setup-termux.sh
 
