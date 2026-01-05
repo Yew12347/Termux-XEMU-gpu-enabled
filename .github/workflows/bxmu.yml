@@ -16,8 +16,15 @@ jobs:
         run: |
           git clone --depth 1 https://github.com/George-Seven/termux-packages
           cd termux-packages
+          
+          # Use the Termux builder image from Jan 2025
+          export TERMUX_BUILDER_IMAGE_NAME="ghcr.io/termux/package-builder@sha256:bfbb757453916d3764cbc2201cb8339bcf688d9f1ddfdef276654761e39eb0d5"
+          
+          # Build the package inside the Docker container
           ./scripts/run-docker.sh ./build-package.sh -f -I -a "${{ matrix.ARCH }}" xemu
+          
           mv output/*.deb ../xemu.deb
+
       - name: Upload Release
         uses: svenstaro/upload-release-action@v2
         with:
