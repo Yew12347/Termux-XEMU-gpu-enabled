@@ -22,7 +22,10 @@ jobs:
           
           git clone --depth 1 https://github.com/George-Seven/termux-packages
           cd termux-packages
-          ./scripts/run-docker.sh ./build-package.sh -f -I -a "${{ matrix.ARCH }}" xemu
+          
+          # Run the build inside Docker, passing NDK explicitly
+          ./scripts/run-docker.sh -e NDK="$NDK" ./build-package.sh -f -I -a "${{ matrix.ARCH }}" xemu
+          
           mv output/*.deb ../xemu.deb
 
       - name: Upload Release
