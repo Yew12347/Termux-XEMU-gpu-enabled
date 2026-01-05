@@ -14,9 +14,17 @@ jobs:
     steps:
       - name: Build Xemu
         run: |
-          git clone --depth 1 https://github.com/George-Seven/termux-packages
+          # Clone your fork
+          git clone --depth 1 https://github.com/Yew12347/new-termux-packages termux-packages
           cd termux-packages
+
+          # Pin the Docker builder image to the Jan 2025 version
+          export TERMUX_BUILDER_IMAGE_NAME="ghcr.io/termux/package-builder@sha256:bfbb757453916d3764cbc2201cb8339bcf688d9f1ddfdef276654761e39eb0d5"
+
+          # Build xemu for the selected ARCH
           ./scripts/run-docker.sh ./build-package.sh -f -I -a "${{ matrix.ARCH }}" xemu
+
+          # Move the built .deb out
           mv output/*.deb ../xemu.deb
 
       - name: Upload Release
