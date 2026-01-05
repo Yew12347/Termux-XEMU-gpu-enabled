@@ -1,0 +1,30 @@
+name: Build Xemuothers
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        ARCH: [aarch64]
+      fail-fast: false
+    steps:
+      - name: Build Xemu
+        run: |
+          git clone --depth 1 https://github.com/George-Seven/termux-packages
+          cd termux-packages
+          ./scripts/run-docker.sh ./build-package.sh -f -I -a "${{ matrix.ARCH }}" xemu
+          mv output/*.deb ../xemu.deb
+
+      - name: Upload Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+           repo_token: ${{ secrets.GITHUB_TOKEN }}
+           file: "xemu.deb"
+           asset_name: "xemu-${{ matrix.ARCH }}.deb"
+           tag: "xemu"
+           release_name: "Xemu Original Xbox emulator for Termux"
+           overwrite: true
