@@ -15,7 +15,7 @@ jobs:
       - name: Build Xemu
         run: |
           # Clone your fork
-          git clone --depth 1 https://github.com/Yew12347/new-termux-packages termux-packages
+          git clone --depth 1 https://github.com/Yew12347/termux-packages.git termux-packages
           cd termux-packages
 
           # Pin the Docker builder image to the Jan 2025 version
