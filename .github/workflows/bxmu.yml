@@ -12,12 +12,13 @@ jobs:
         ARCH: [aarch64]
       fail-fast: false
     steps:
-      - name: Build Xemu
+      - name: clone
         run: |
           wget https://github.com/Yew12347/termux-xemu-req-libs/releases/download/idontknowbro/termux-packages-master.zip
           unzip termux-packages-master.zip
           cd termux-packages-master
-          
+      - name: build
+        run:
           # Build the package inside the Docker container
           ./scripts/run-docker.sh ./build-package.sh -f -I -a "${{ matrix.ARCH }}" xemu
           
